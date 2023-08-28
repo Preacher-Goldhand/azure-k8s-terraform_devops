@@ -83,7 +83,7 @@ variable "aks_node_pool_os_disk_size_gb" {
 
 variable "aks_tags" {
   description = "Tags for the AKS resources"
-  type        = map
+  type        = map(any)
   default     = { environment = "Dev" }
 }
 

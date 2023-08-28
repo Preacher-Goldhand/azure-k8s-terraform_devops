@@ -33,11 +33,6 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     vm_size    = var.default_node_pool_vm_size
   }
 
-  service_principal {
-    client_id     = var.client_id
-    client_secret = var.client_secret
-  }
-
   network_profile {
     network_plugin = var.aks_network_plugin
     service_cidr   = var.aks_service_cidr
@@ -48,11 +43,11 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "aks_node_pool" {
-  name                = var.aks_node_pool_name
+  name                  = var.aks_node_pool_name
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks_cluster.id
-  vm_size             = var.aks_node_pool_vm_size
-  node_count          = var.aks_node_pool_node_count
-  orchestrator_version = azurerm_kubernetes_cluster.aks_cluster.kubernetes_version
+  vm_size               = var.aks_node_pool_vm_size
+  node_count            = var.aks_node_pool_node_count
+  orchestrator_version  = azurerm_kubernetes_cluster.aks_cluster.kubernetes_version
 
   os_disk_size_gb = var.aks_node_pool_os_disk_size_gb
 }
